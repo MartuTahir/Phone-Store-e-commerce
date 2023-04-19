@@ -132,45 +132,6 @@ header {
         height: 2.1rem;
     }
 }
-
-.carro {
-    position: absolute;
-    z-index: 1;
-    top: 5.5rem;
-    margin-left: 59%;
-    width: 25rem;
-    height: auto;
-    background: rgb(255, 255, 255);
-    border-radius: 0.1rem;
-    box-shadow: 0.2em 0.2em 0.5em #08080815;
-    transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: none;
-    padding: 1.5rem;
-    .btn-vaciar {
-        font-family: $fuenteText;
-        color: white;
-        font-size: 0.9rem;
-        width: 9.5rem;
-        height: 2rem;
-        border-radius: 1rem;
-        border: none;
-        background-color: rgb(180, 77, 66);
-        margin-bottom: 2rem;
-    }
-    .btn-cerrar {
-        font-family: $fuenteText;
-        color: rgb(180, 77, 66);
-        font-size: 1rem;
-        font-weight: 600;
-        width: 1.5rem;
-        height: 1.8rem;
-        border-radius: 1rem;
-        border: none;
-        background-color: white;
-        text-align: center;
-        margin-left: 10rem;
-    }
-}
 .img-prodCa {
     width: auto;
     height: 6rem;
@@ -183,6 +144,35 @@ header {
     width: 4rem;
     border-radius: 1rem;
     border: none;
-    background-color: rgb(180, 77, 66);
+    background-color: rgb(155, 18, 18);
     margin-bottom: 2rem;
+}
+.btn-comprar {
+    border-radius: 1rem;
+    background-color: $colorprincipal !important;
+    color: white;
+    border: none;
+    font-family: $fuenteText;
+    width: 7rem;
+    height: 2.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.precio {
+    font-family: $fuenteText;
+}
+.vaciar {
+    border-radius: 1rem;
+    background-color: rgb(155, 18, 18);
+    color: white;
+    border: none;
+    font-family: $fuenteText;
+    width: 7rem;
+    height: 2.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-left: 5rem;
+}
+.numCarrito {
+    background-color: rgb(2, 155, 96) !important;
 }

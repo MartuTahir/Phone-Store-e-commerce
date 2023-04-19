@@ -28,12 +28,32 @@
                 <a href="index.html">
                   <img src="images/logo.png" alt="logo" class="logo">
                 </a>
-                <button id="btn" class="btn-carrito boton">
+                <button type="button" id="btn-carro" class="btn-carrito boton" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <a>
                     <img src="images/shop.png" alt="carrito" class="shop">
+                    <span id="carritoContenedor" class="position-absolute translate-middle badge rounded-pill numCarrito">
+                      0
+                    </span>
                   </a>
                 </button>
-                <p id="carritoContenedor" class="numCarrito">0</p>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tu carrito</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <p class="precio"> </p>
+                        <button type="button" class="vaciar"> Vaciar carrito</button>
+                        <button type="button" class="btn-comprar">COMPRAR</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
               </div>
             </div>
@@ -54,6 +74,7 @@
       </a>
     </footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/stock.js"></script>
     <script src="js/script.js"></script>
 </body>

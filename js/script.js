@@ -1,6 +1,8 @@
 const carritoContenedor = document.querySelector(`#carritoContenedor`)
-let btn = document.querySelector("#btn")
+let btn = document.querySelector("#btn-carro")
 let cantidadCarrito
+const compras = document.querySelector('.modal-body')
+const precioCarrito = document.querySelector(`.precio`)
 //creacion de cards de productos 
 const gridCards = document.querySelector(`.grid-card`);
 
@@ -28,33 +30,20 @@ productos.forEach((productos) => {
     gridCards.appendChild(div)
 })
 
- //funcion para pushear producto al carrito
+//////funciones
+//pushear producto al carrito
 
 function agregarProducto(id) {
     const item = productos.find((prod) => prod.id === id);
     carrito.push(item);
     console.log(carrito);
+    cantidadCarrito = carritoContenedor.textContent = carrito.length
     actualizarCarrito()
 }
 
-//evento para que se muestre el carrito 
-
-btn.addEventListener("click", (e) => {
-    e.preventDefault()  
-    let carro = document.createElement("div")
-    carro.className = "carro"
-    carro.innerHTML = `
-        <button class="btn-vaciar">VACIAR CARRITO</button>
-        <button class="btn-cerrar">x</button>
-    `
-    gridCards.appendChild(carro)
-    actualizarCarrito()
-})
-//////funciones
 //actualiza carrito
 
 const actualizarCarrito = () => {
-    const compras = document.querySelector(`.carro`)
     compras.innerHTML = ''
     carrito.forEach((prod) => {
         const div = document.createElement("div")
@@ -66,10 +55,6 @@ const actualizarCarrito = () => {
             <button  id="btnElim" class="btn-eliminar">Borrar</button>
         `
         compras.append(div)
-        const precioTotal = document.createElement("p")
-        precioTotal.className = "precio"
-        precioTotal.innerHTML= ''
-        div.append(precioTotal)
     })
     totalCarrito()
     guardarStorage()
@@ -77,7 +62,6 @@ const actualizarCarrito = () => {
 
 //suma el total de los productos agregados al carrito
 const totalCarrito = () => {
-    const precioCarrito = document.querySelector(`.precio`)
     precioCarrito.innerText = 'Total: $' + carrito.reduce((acc, producto) => acc += producto.precio, 0)
 }
 
