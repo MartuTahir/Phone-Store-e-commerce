@@ -143,18 +143,36 @@ header {
 .img-prodCa {
   width: auto;
   height: 6rem;
+  margin-bottom: 1rem;
+}
+
+.contenedor-prod-carrito {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+  border-bottom: solid 1px rgb(209, 206, 206);
 }
 
 .btn-eliminar {
-  font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
-  color: white;
   height: 2rem;
-  width: 4rem;
+  width: 1.5rem;
   border-radius: 1rem;
   border: none;
-  background-color: rgb(155, 18, 18);
+  background-color: transparent;
   margin-bottom: 2rem;
+}
+
+.trash {
+  background-image: rgb(155, 18, 18);
+  width: 1.2rem;
+  height: 2.2rem;
+  margin: 1.2rem;
+  margin-left: -1rem;
+}
+
+.text-prod {
+  font-size: 0.98rem;
+  margin: 1.3rem;
 }
 
 .btn-comprar {
@@ -188,4 +206,11 @@ header {
 
 .numCarrito {
   background-color: rgb(2, 155, 96) !important;
+}
+
+.trash2 {
+  width: 1.2rem;
+  height: 2.2rem;
+  margin: 1.2rem;
+  margin-left: 1.3rem;
 }/*# sourceMappingURL=style.css.map */
