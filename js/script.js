@@ -4,10 +4,9 @@ let cantidadCarrito
 const compras = document.querySelector('.modal-body')
 const precioCarrito = document.querySelector(`.precio`)
 let eliminar = document.querySelector('.btn-eliminar')
-let vaciar = document.querySelector('.vaciar')
-//creacion de cards de productos 
+let vaciar = document.querySelector('.vaciar') 
 const gridCards = document.querySelector(`.grid-card`);
-
+//creacion de cards de productos
 productos.forEach((productos) => {
 
     const {nombre, id, color, precio, img} = productos
@@ -39,30 +38,40 @@ productos.forEach((productos) => {
     gridCards.appendChild(div)
 })
 
+
 //////funciones
 //pushear producto al carrito
 
 function agregarProducto(id) {
     const item = productos.find((prod) => prod.id === id);
-    carrito.push(item);
+    //encuentra producto repetido e incrementa la cantidad
+    if(carrito.some (producto => producto.id === item.id)) {
+        const productoExistente = carrito.findIndex(producto => producto.id === item.id)
+        carrito[productoExistente].cantidad++
+    } else {
+        carrito.push(item);
+    }
     console.log(carrito);
-    cantidadCarrito = carritoContenedor.textContent = carrito.length
     actualizarCarrito()
+    guardarStorage()
 }
-
 //actualiza carrito
 
 const actualizarCarrito = () => {
+    const compras = document.querySelector('.modal-body')
     compras.innerHTML = ''
     carrito.forEach((prod) => {
-        const {nombre, id, color, precio, img} = prod
-        const div = document.createElement("div")
-        div.className = 'contenedor-prod-carrito'
-        div.innerHTML = `
+        const {nombre, id, color, precio, img, cantidad} = prod
+        const divCarrito = document.createElement(`div`)
+        divCarrito.className = 'contenedor-prod-carrito'
+        divCarrito.innerHTML = `
             <img src="${img}" class="img-prodCa" ></img>
             <p class="text-prod" >${nombre}</p>
-            <p class="text-prod">Precio: $${precio}</p>
+            <p class=" precio-prod">Precio: $${precio}</p>
+            <p class="cantidad" > Cantidad ${cantidad} </p>
         `
+        compras.appendChild(divCarrito)
+        //boton para eliminar producto del carrito
         const botonBorrar = document.createElement('button')
         botonBorrar.className = "btn-eliminar"
         botonBorrar.innerHTML = `<img class="trash" src="./images/trash-svgrepo-com.svg">`
@@ -76,9 +85,9 @@ const actualizarCarrito = () => {
                 timer: 1500
               })
         })
-        div.append(botonBorrar)
-        compras.append(div)
+        divCarrito.appendChild(botonBorrar)
     })
+    //vaciar carrito
     vaciar = document.querySelector('.vaciar')
     vaciar.addEventListener("click", () => {
         Swal.fire({
@@ -114,9 +123,8 @@ const actualizarCarrito = () => {
 
 //suma el total de los productos agregados al carrito
 const totalCarrito = () => {
-    precioCarrito.innerText = 'Total: $' + carrito.reduce((acc, producto) => acc += producto.precio, 0)
-}
-
+    precioCarrito.innerText = 'Total: $' + carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0)
+} 
 //elimina productos del carrito
 
 function borrarProd(id) {
@@ -124,9 +132,13 @@ function borrarProd(id) {
     const prodEliminado = carrito.find((prod) => prod.id === id);
     console.log(prodEliminado)
     console.log(carrito);
-    carrito = carrito.filter((carritoId) => {
-        return carritoId !== prodEliminado
-    })
+    if(prodEliminado.cantidad > 1){
+        prodEliminado.cantidad--
+    } else {
+        carrito = carrito.filter((carritoId) => {
+            return carritoId !== prodEliminado
+        })
+    }
     console.log(carrito);
     actualizarCarrito()
 }  
@@ -135,7 +147,10 @@ function borrarProd(id) {
 //guarda productos y cantidad de productos en el local storage
 
 function guardarStorage() {
-    cantidadCarrito = carritoContenedor.textContent = carrito.length
+    //numero de productos en el carrito
+    let numeroC = carrito.reduce((acc, producto) => acc + producto.cantidad,0)
+    console.log(numeroC);
+    cantidadCarrito = carritoContenedor.innerText = numeroC
     localStorage.setItem(`carrito`, JSON.stringify(carrito))
     localStorage.setItem(`numCarrito`, JSON.stringify(cantidadCarrito))
 } 
