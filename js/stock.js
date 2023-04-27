@@ -5,7 +5,7 @@ const productos = [
      precio: 459000, 
      img: "./images/s23.png",
      cantidad: 1,
-     categoria: "celulares"},
+     categoria: "Celulares"},
 
     {nombre: "Apple IPhone 11 Pro Max 64 GB", 
      color: "Oro",
@@ -13,7 +13,7 @@ const productos = [
      precio: 370000, 
      img: "./images/iphone-11-pro.jpg",
      cantidad: 1,
-     categoria: "celulares"},
+     categoria: "Celulares"},
 
     {nombre: "Motorola Moto G52 128GB", 
      color: "Azul",
@@ -21,7 +21,7 @@ const productos = [
      precio: 120000, 
      img: "./images/moto-g52.jpg",
      cantidad: 1,
-     categoria: "celulares"},
+     categoria: "Celulares"},
 
     {nombre: "Apple IPhone 13 128GB", 
      color: "Rosa",
@@ -29,7 +29,7 @@ const productos = [
      precio: 420000, 
      img: "./images/iphone-13.jpg",
      cantidad: 1,
-     categoria: "celulares"},
+     categoria: "Celulares"},
 
     {nombre: "Auriculares inalámbricos Samsung", 
      color: "Lila",
@@ -37,7 +37,7 @@ const productos = [
      precio: 39500, 
      img: "./images/auri-samsung.jpg",
      cantidad: 1,
-     categoria: "auriculares"},
+     categoria: "Auriculares"},
 
     {nombre: "Apple AirPods con estuche de carga", 
      color: "Blanco",
@@ -45,7 +45,7 @@ const productos = [
      precio: 47500, 
      img: "./images/airpods.jpg",
      cantidad: 1,
-     categoria: "auriculares"},
+     categoria: "Auriculares"},
     
     {nombre: "Apple Watch SE GPS", 
      color: "Oro",
@@ -53,7 +53,7 @@ const productos = [
      precio: 137000, 
      img: "./images/apple-watch.jpg",
      cantidad: 1,
-     categoria: "relojes"},
+     categoria: "Relojes"},
     
     {nombre: "Samsung Galaxy Watch4 (Bluetooth)", 
      color: "Rosa oro",
@@ -61,7 +61,39 @@ const productos = [
      precio: 95000, 
      img: "./images/smart-watch.jpg",
      cantidad: 1,
-     categoria: "relojes"}
+     categoria: "Relojes"},
+
+    {nombre: "Auriculares inalambricos JBL", 
+     color: "Celeste",
+     id: 9, 
+     precio: 12500, 
+     img: "./images/jbl-auri.jpg",
+     cantidad: 1,
+     categoria: "Auriculares"},
+
+    {nombre: "Auriculares inalambricos Daewoo", 
+     color: "Verde",
+     id: 10, 
+     precio: 8500, 
+     img: "./images/daewoo-auri.jpg",
+     cantidad: 1,
+     categoria: "Auriculares"},
+
+    {nombre: "Smartwatch Colmi", 
+     color: "Azul",
+     id: 11, 
+     precio: 25000, 
+     img: "./images/colmi-reloj.jpg",
+     cantidad: 1,
+     categoria: "Relojes"},
+
+    {nombre: "Smartwatch Xiaomi", 
+     color: "Negro",
+     id: 12, 
+     precio: 35000, 
+     img: "./images/xiaomi-reloj.jpg",
+     cantidad: 1,
+     categoria: "Relojes"},
 ]
 
 let carrito = []

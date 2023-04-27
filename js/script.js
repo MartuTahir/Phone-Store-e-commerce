@@ -1,46 +1,102 @@
 const carritoContenedor = document.querySelector(`#carritoContenedor`)
-let btn = document.querySelector("#btn-carro")
 let cantidadCarrito
 const compras = document.querySelector('.modal-body')
 const precioCarrito = document.querySelector(`.precio`)
-let eliminar = document.querySelector('.btn-eliminar')
 let vaciar = document.querySelector('.vaciar') 
 const gridCards = document.querySelector(`.grid-card`);
-//creacion de cards de productos
-productos.forEach((productos) => {
+const btnCategoria = document.querySelectorAll('.btn-categoria')
+const textTodos = document.querySelector('.todos')
+const btnTodos = document.querySelector('.todosP')
+const textCelus = document.querySelector('.celus')
+const btnCelus = document.querySelector('.celusP')
+const textAuris = document.querySelector('.auris')
+const btnAuris = document.querySelector('.aurisP')
+const textRelojes = document.querySelector('.relojes')
+const btnRelojes = document.querySelector('.relojesP')
 
-    const {nombre, id, color, precio, img} = productos
-    const div = document.createElement('div')
-    div.className = "card"
-    div.innerHTML = 
+////funcion de creacion de cards de productos
+
+function crearProductos(prodElegidos) {
+    gridCards.innerHTML = ''
+    prodElegidos.forEach((productos) => {
+
+        const {nombre, id, color, precio, img} = productos
+        const div = document.createElement('div')
+        div.className = "card"
+        div.innerHTML = 
+            `
+                <img src="${img}" alt="s23" class="img-prod" >
+                <p class="p-prod">${nombre} - ${color}</p>
+                <p class="p-precio"> $${precio}</p>
+            `
+        const boton = document.createElement('button')
+        boton.className = "btn-compra"
+        boton.innerHTML = `
+            <img src="images/shop.png" alt="carrito" class="shop-boton">
+            Agregar al carrito
         `
-            <img src="${img}" alt="s23" class="img-prod" >
-            <p class="p-prod">${nombre} - ${color}</p>
-            <p class="p-precio"> $${precio}</p>
-        `
-    const boton = document.createElement('button')
-    boton.className = "btn-compra"
-    boton.innerHTML = `
-        <img src="images/shop.png" alt="carrito" class="shop-boton">
-        Agregar al carrito
-    `
-    boton.addEventListener('click', () => {
-        agregarProducto(id)
-        swal.fire({
-            icon: 'success',
-            title: "¡Tu producto ya está en el carrito!",
-            showConfirmButton: false,
-            toast: true,
-            timer: 1500
+        boton.addEventListener('click', () => {
+            agregarProducto(id)
+            swal.fire({
+                icon: 'success',
+                title: "¡Tu producto ya está en el carrito!",
+                showConfirmButton: false,
+                toast: true,
+                timer: 1500
+            })
         })
+        div.append(boton)
+        gridCards.appendChild(div)
     })
-    div.append(boton)
-    gridCards.appendChild(div)
+}
+crearProductos(productos)
+
+/// botones de filtro de productos por categoria
+
+btnCategoria.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+        if (e.currentTarget.id != "todos") {
+            const prodBoton = productos.filter(producto => producto.categoria === e.currentTarget.id)
+            crearProductos(prodBoton)
+        } else {
+            crearProductos(productos)
+        }
+    })
 })
 
+////funcion para subrayar categoria seleccionada
 
-//////funciones
-//pushear producto al carrito
+function subrayados() {
+    textTodos.style.textDecoration = "underline"
+    btnTodos.addEventListener("click", () => {
+        textRelojes.style.textDecoration = "none"
+        textAuris.style.textDecoration = "none"
+        textCelus.style.textDecoration = "none"
+        textTodos.style.textDecoration = "underline"
+    })
+    btnCelus.addEventListener("click", () => {
+        textRelojes.style.textDecoration = "none"
+        textAuris.style.textDecoration = "none"
+        textTodos.style.textDecoration = "none"
+        textCelus.style.textDecoration = "underline"
+    })
+    btnAuris.addEventListener("click", () => {
+        textRelojes.style.textDecoration = "none"
+        textCelus.style.textDecoration = "none"
+        textTodos.style.textDecoration = "none"
+        textAuris.style.textDecoration = "underline"
+    })
+    btnRelojes.addEventListener("click", () => {
+        textCelus.style.textDecoration = "none"
+        textTodos.style.textDecoration = "none"
+        textAuris.style.textDecoration = "none"
+        textRelojes.style.textDecoration = "underline"
+    })
+
+}
+subrayados()
+
+///funcion para pushear producto al carrito
 
 function agregarProducto(id) {
     const item = productos.find((prod) => prod.id === id);
@@ -55,9 +111,11 @@ function agregarProducto(id) {
     actualizarCarrito()
     guardarStorage()
 }
-//actualiza carrito
+
+////funcion que actualiza el carrito
 
 const actualizarCarrito = () => {
+    //crea el div con productos agregados al carrito
     const compras = document.querySelector('.modal-body')
     compras.innerHTML = ''
     carrito.forEach((prod) => {
@@ -71,7 +129,7 @@ const actualizarCarrito = () => {
             <p class="cantidad" > Cantidad ${cantidad} </p>
         `
         compras.appendChild(divCarrito)
-        //boton para eliminar producto del carrito
+        /// evento boton para eliminar producto del carrito
         const botonBorrar = document.createElement('button')
         botonBorrar.className = "btn-eliminar"
         botonBorrar.innerHTML = `<img class="trash" src="./images/trash-svgrepo-com.svg">`
@@ -87,7 +145,7 @@ const actualizarCarrito = () => {
         })
         divCarrito.appendChild(botonBorrar)
     })
-    //vaciar carrito
+    ///boton vaciar carrito
     vaciar = document.querySelector('.vaciar')
     vaciar.addEventListener("click", () => {
         Swal.fire({
@@ -121,11 +179,7 @@ const actualizarCarrito = () => {
     guardarStorage()
 }
 
-//suma el total de los productos agregados al carrito
-const totalCarrito = () => {
-    precioCarrito.innerText = 'Total: $' + carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0)
-} 
-//elimina productos del carrito
+//funcion que elimina productos del carrito
 
 function borrarProd(id) {
     console.log(id);
@@ -143,8 +197,12 @@ function borrarProd(id) {
     actualizarCarrito()
 }  
 
+//funcion que suma el total de los productos agregados al carrito
+const totalCarrito = () => {
+    precioCarrito.innerText = 'Total: $' + carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0)
+} 
 
-//guarda productos y cantidad de productos en el local storage
+//funcion que guarda productos y cantidad de productos en el local storage
 
 function guardarStorage() {
     //numero de productos en el carrito
