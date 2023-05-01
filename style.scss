@@ -11,7 +11,7 @@ $colorprincipal: #19695f;
     background-color: $colorprincipal;
     footer {
         background-color: white;
-        height: 2.7rem;
+        height: 3rem;
     }
 }
 header {
@@ -244,6 +244,97 @@ a {
     margin-right: 1.4rem;
     text-align: center;
 }
+
+$green: #008744;
+$blue: #0057e7;
+$red: #d62d20;
+$yellow: #ffa700;
+$white: #eee;
+
+// scaling... any units
+$width: 100px;
+
+.loader {
+  position: relative;
+  margin: 0 auto;
+  width: $width;
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 25rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: $green;
+  }
+  40% {
+    stroke: $blue;
+  }
+  66% {
+    stroke: $red;
+  }
+  80%,
+  90% {
+    stroke: $yellow;
+  }
+}
+
+// demo-specific
+.showbox {
+  position: absolute;
+  top: 0;
+  bottom: 10rem;
+  left: 0;
+  right: 0;
+  padding: 5%;
+  height: 30rem;
+  padding-bottom: 10rem;
+}
+
 @media screen and (max-width: 548px) {
     .logo {
         width: 10.5rem;
@@ -280,8 +371,8 @@ a {
     }
     .grid-card {
         grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
-        padding: 1rem;
-        gap: 2rem;
+        padding: 1.7rem;
+        gap: 1.5rem;
         .card {
             width: 11rem;
             height: 20rem;

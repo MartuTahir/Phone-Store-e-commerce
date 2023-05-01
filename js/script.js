@@ -69,9 +69,36 @@ btnCategoria.forEach(boton => {
     boton.addEventListener("click", (e) => {
         if (e.currentTarget.id != "todos") {
             const prodBoton = productos.filter(producto => producto.categoria === e.currentTarget.id)
-            crearProductos(prodBoton)
+            gridCards.innerHTML = ''
+            let loader = document.createElement("div")
+            loader.className = 'showbox'
+            loader.innerHTML = `
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                </svg>
+            </div>
+            `
+            gridCards.appendChild(loader)
+            setTimeout(() => {
+                crearProductos(prodBoton)
+            },1200)
+            
         } else {
-            crearProductos(productos)
+            gridCards.innerHTML = ''
+            let loader = document.createElement("div")
+            loader.className = 'showbox'
+            loader.innerHTML = `
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                </svg>
+            </div>
+            `
+            gridCards.appendChild(loader)
+            setTimeout(() => {
+                crearProductos(productos)
+            },1200)
         }
     })
 })
