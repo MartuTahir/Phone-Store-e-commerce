@@ -1,3 +1,12 @@
+//usando fetch para traer mi archivo json de productos a un array
+let productos = []
+fetch("./js/stock.json")
+    .then(res => res.json())
+    .then(data => {
+        productos = data
+        crearProductos(productos)
+    })
+
 const carritoContenedor = document.querySelector(`#carritoContenedor`)
 let cantidadCarrito
 const compras = document.querySelector('.modal-body')
@@ -13,7 +22,10 @@ const textAuris = document.querySelector('.auris')
 const btnAuris = document.querySelector('.aurisP')
 const textRelojes = document.querySelector('.relojes')
 const btnRelojes = document.querySelector('.relojesP')
+const comprar = document.querySelector('.comprar')
 
+//array de carrito
+let carrito = []
 ////funcion de creacion de cards de productos
 
 function crearProductos(prodElegidos) {
@@ -168,17 +180,53 @@ const actualizarCarrito = () => {
                 showConfirmButton: false,
                 timer: 1500
               })
-              carrito = []
-              compras.innerHTML = 'Tu carrito esta vacio'
+              vaciarCarrito()
               totalCarrito()
               guardarStorage()
             }
           })
     })
+    ////boton comprar
+    comprar.addEventListener("click", () => {
+        //evalua si el carrito tiene productos o no
+        if (carrito.length >= 1) {
+            swal.fire({
+                icon: 'success',
+                title: '¡Gracias por tu compra! :)',
+                toast: true,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            vaciarCarrito()
+            totalCarrito()
+            guardarStorage()
+        } else {
+            //si no tiene productos, no puede comprar
+            swal.fire({
+                icon: 'error',
+                title: 'No tienes nada en tu carrito',
+                toast: true,
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+        } 
+        
+    })
+    //si el carrito esta vacio, muestra este mensaje
+    if (carrito.length === 0) {
+        compras.innerHTML = 'Tu carrito esta vacio'
+    }
     totalCarrito()
     guardarStorage()
 }
 
+//funcion que vacia el carrito 
+
+function vaciarCarrito() {
+    carrito = []
+    compras.innerHTML = 'Tu carrito esta vacio'
+}
 //funcion que elimina productos del carrito
 
 function borrarProd(id) {
