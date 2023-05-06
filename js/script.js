@@ -147,7 +147,6 @@ function agregarProducto(id) {
     } else {
         carrito.push(item);
     }
-    console.log(carrito);
     actualizarCarrito()
     guardarStorage()
 }
@@ -228,16 +227,6 @@ const actualizarCarrito = () => {
             vaciarCarrito()
             totalCarrito()
             guardarStorage()
-        } else {
-            //si no tiene productos, no puede comprar
-            swal.fire({
-                icon: 'error',
-                title: 'No tienes nada en tu carrito',
-                toast: true,
-                showConfirmButton: false,
-                timer: 1500
-            })
-
         } 
         
     })
@@ -258,10 +247,7 @@ function vaciarCarrito() {
 //funcion que elimina productos del carrito
 
 function borrarProd(id) {
-    console.log(id);
     const prodEliminado = carrito.find((prod) => prod.id === id);
-    console.log(prodEliminado)
-    console.log(carrito);
     if(prodEliminado.cantidad > 1){
         prodEliminado.cantidad--
     } else {
@@ -269,7 +255,6 @@ function borrarProd(id) {
             return carritoId !== prodEliminado
         })
     }
-    console.log(carrito);
     actualizarCarrito()
 }  
 
@@ -283,7 +268,6 @@ const totalCarrito = () => {
 function guardarStorage() {
     //numero de productos en el carrito
     let numeroC = carrito.reduce((acc, producto) => acc + producto.cantidad,0)
-    console.log(numeroC);
     cantidadCarrito = carritoContenedor.innerText = numeroC
     localStorage.setItem(`carrito`, JSON.stringify(carrito))
     localStorage.setItem(`numCarrito`, JSON.stringify(cantidadCarrito))
