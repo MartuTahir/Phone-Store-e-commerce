@@ -12,6 +12,7 @@ $colorprincipal: #19695f;
     footer {
         background-color: white;
         height: 3rem;
+        margin-top: 20rem;
     }
 }
 header {
@@ -250,8 +251,6 @@ $blue: #0057e7;
 $red: #d62d20;
 $yellow: #ffa700;
 $white: #eee;
-
-// scaling... any units
 $width: 100px;
 
 .loader {
@@ -323,7 +322,6 @@ $width: 100px;
   }
 }
 
-// demo-specific
 .showbox {
   position: absolute;
   top: 0;
@@ -383,18 +381,66 @@ $width: 100px;
             .p-prod {
                 font-size: 0.7rem;
                 padding-right: 0.2rem;
+                font-family: $fuenteText;
             }
             .p-precio {
                 font-size: 0.8rem;
+                font-family: $fuenteText;
             }
             .btn-compra {
                 width: 8.3rem;
                 font-size: 0.7rem;
+                font-family: $fuenteText;
                 .shop-boton {
                     width: 1.5rem;
                     height: auto;
                 }
             }
         }
+    }
+    .circular {
+        animation: rotate 2s linear infinite;
+        height: 70%;
+        transform-origin: center center;
+        width: 70%;
+        position: absolute;
+        top: 25rem;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    .text-prod {
+        font-size: 0.75rem;
+        margin-top: 0.9rem;
+    }
+    .precio-prod {
+        font-size: 0.75rem;
+        margin-top: 0.9rem;
+    }
+    .cantidad {
+        font-size: 0.75rem;
+        margin-top: 0.9rem;
+    }
+    .trash {
+        width: 1rem;
+        height: 2rem;
+    }
+    .vaciar {
+        font-size: 0.75rem;
+        width: 6rem;
+        height: 2rem;
+    }
+    .btn-comprar {
+        font-size: 0.75rem;
+        width: 6rem;
+        height: 2rem;
+    }
+    .precio {
+        font-size: 0.9rem;
+    }
+    .img-prodCa {
+        width: auto;
+        height: 5rem;
     }
 }

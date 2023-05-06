@@ -61,6 +61,7 @@ function crearProductos(prodElegidos) {
         gridCards.appendChild(div)
     })
 }
+
 crearProductos(productos)
 
 /// botones de filtro de productos por categoria
